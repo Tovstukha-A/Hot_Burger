@@ -2,13 +2,13 @@
 const restaurants = [
   {
     title: 'Hot Burger Липки',
-    url: 'hot-burger-tverskaya',
+    url: 'hot-burger-lipki',
     id: 1
   },
 
   {
     title: 'Hot Burger Оболонь',
-    url: 'hot-burger-maroseyka',
+    url: 'hot-burger-obolon',
     id: 2
   },
   {
