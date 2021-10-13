@@ -20,7 +20,8 @@ class Landing extends React.Component {
     };
 
     gotoRestaurant = () => {
-        console.log("gotoRestaurant");
+        const {url} = this.state;
+        this.props.history.push(`/restaurant/${url}`);
     }
 
     render() {
@@ -30,11 +31,11 @@ class Landing extends React.Component {
 
                     <div className="restaurant_select_top">
                         <div onClick={this.displayList} className="restaurant_select_top-header font-effect-outline">
-                            {this.state.title ? this.state.title : "Пожалуйста, выбери ресторан"}
+                            {this.state.title ? this.state.title : "Выбери ресторан"}
                         </div>
-                        <div className="arrow-picker">
-                            <div className="arrow-picker-up"></div>
-                            <div className="arrow-picker-down"></div>
+                        <div className="arrow_picker">
+                            <div className="arrow_picker-up"></div>
+                            <div className="arrow_picker-down"></div>
                         </div>
                     </div>
 
