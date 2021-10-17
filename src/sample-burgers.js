@@ -24,7 +24,7 @@ const sampleBurgers = {
     desc:
       'Двойной гамбургер с бифштексом из 100% говядины и расплавленным сыром Чеддер и пряным соусом.',
     price: 200,
-    status: 'unavailable'
+    status: 'available'
   },
 
   burger4: {
