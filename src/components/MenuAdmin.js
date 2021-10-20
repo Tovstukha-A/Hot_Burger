@@ -1,5 +1,6 @@
 import React from "react";
 import AddBurgerForm from "./AddBurgerForm";
+import EditBurgerForm from "./EditBurgerForm";
 
 class MenuAdmin extends React.Component {
 
@@ -8,7 +9,10 @@ class MenuAdmin extends React.Component {
             <>
                 <div className="menu-admin">
                     <h2>Управление меню</h2>
-                    <AddBurgerForm addBurger={this.props.addBurger} /> 
+                    {Object.keys(this.props.burgers).map(key => {
+                        return (<EditBurgerForm key={key} updateBurger={this.props.updateBurger} burger={this.props.burgers[key]} index={key} />);
+                    })}
+                    <AddBurgerForm addBurger={this.props.addBurger} />
 
                     <button onClick={this.props.loadSampleBurgers}>Добавить все бургеры</button>
                 </div>

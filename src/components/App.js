@@ -14,16 +14,26 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const params = this.props.match;
+        const { params } = this.props.match;
+
+        const localStorageRef = localStorage.getItem(params.restaurantId);
+        if (localStorageRef) {
+            this.setState({ order: JSON.parse(localStorageRef) });
+        }
 
         this.ref = base.syncState(`${params.restaurantId}/burgers`, {
             context: this,
-            state: "burgers"
-        })
+            state: 'burgers'
+        });
+    }
+
+    componentDidUpdate() {
+        const { params } = this.props.match;
+        localStorage.setItem(params.restaurantId, JSON.stringify(this.state.order));
     }
 
     componentWillUnmount() {
-        base.removeBinding(this.ref)
+        base.removeBinding(this.ref);
     }
 
     addBurger = burger => {
@@ -43,6 +53,15 @@ class App extends React.Component {
         // 3. Записываем наш новый объект order в state
         this.setState({ order });
     }
+
+    updateBurger = (key, updatedBurger) => {
+        // 1. Создаем копию объекта state
+        const burgers = { ...this.state.burgers };
+        // 2. Обновляем нужный нам burger
+        burgers[key] = updatedBurger;
+        // 3. Записываем наш новый объект burgers в state
+        this.setState({ burgers });
+    };
 
     loadSampleBurgers = () => {
         this.setState({ burgers: sampleBurgers });
@@ -66,7 +85,7 @@ class App extends React.Component {
                         </ul>
                     </div>
                     <Order burgers={this.state.burgers} order={this.state.order} />
-                    <MenuAdmin addBurger={this.addBurger} loadSampleBurgers={this.loadSampleBurgers} />
+                    <MenuAdmin addBurger={this.addBurger} loadSampleBurgers={this.loadSampleBurgers} burgers={this.state.burgers} updateBurger={this.updateBurger} />
                 </div>
             </>
         )
