@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Landing from "./Landing";
 import App from "./App";
-import Error from "./Error";
+import PageNotFound from "./PageNotFound";
 
 function Router() {
 
@@ -10,9 +10,9 @@ function Router() {
         <>
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/" component={Landing} />
-                    <Route exact="/restaurant/restaurantId" component={App} />
-                    <Route component={Error} />
+                    <Route exact path='/' component={Landing} />
+                    <Route path='/restaurant/:restaurantId' component={App} />
+                    <Route component={PageNotFound} />
                 </Switch>
             </BrowserRouter>
         </>
@@ -20,3 +20,4 @@ function Router() {
 }
 
 export default Router;
+
